@@ -12,7 +12,7 @@ const Login = ({ navigation }) => {
         try {
             const res = await LoginMethod(email, passWord)
             console.log(res)
-            state.set(res)
+            state.set({email:res[0],id:res[1]})
             navigation.push("Home")
         } catch (error) { console.log(error) }
     }

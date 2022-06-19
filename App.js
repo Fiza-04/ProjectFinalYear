@@ -2,8 +2,14 @@ import React from 'react';
 import { View, Image, Button, Text, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import MainNavigation from './components/Navigation/MainNavigtaion';
+import useTimer from './components/Timer/Timer';
+import { useCountdown } from './components/Timer/Timer2';
+import AddTask from './components/Task/AddTask';
+import TaskList from './components/Task/TaskList';
 
 const App = () => {
+  //const [days, hours, minutes, seconds] = useCountdown(400);
+  // console.log([days, hours, minutes, seconds])
   const [photo, setPhoto] = React.useState(null);
   const [uri, setUri] = React.useState("")
 
@@ -49,13 +55,20 @@ const App = () => {
   }
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
       <MainNavigation />
     </View>
   );
 };
 
 export default App;
-
+const Training = () => {
+  const { time, startTimer, stopTimer } = useTimer(20)
+  return <>
+      <Text>{time}</Text>
+      <button onClick={startTimer}>start</button>
+      <button onClick={stopTimer}>stop</button>
+  </>
+}
 
 

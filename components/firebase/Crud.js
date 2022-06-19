@@ -2,19 +2,19 @@ import { updateDoc, deleteDoc, where, serverTimestamp, getDocs, orderBy, query, 
 import { app } from "./FirebaseConfig"
 
 const db = getFirestore(app);
-const NotesRef = collection(db, "ProjectMangmentAuth");
 
-export async function set(data) {
+export async function set(data, location = "ProjectMangmentAuth") {
+    const NotesRef = collection(db, location);
     try {
         const res = await setDoc(doc(NotesRef), data);
         console.log(res)
     } catch (error) { console.log(error) }
 }
 
-export async function get() {
+export async function get(location = "ProjectMangmentAuth") {
     try {
         let a = []
-        const querySnapshot = await getDocs(collection(db, "ProjectMangmentAuth"));
+        const querySnapshot = await getDocs(collection(db, location));
         querySnapshot.forEach((m) => {
             a.push(m)
         })
@@ -37,10 +37,10 @@ export async function update(id, data) {
 
 }
 
-export async function deleteDocs(id) {
+export async function deleteDocs(id , location = "ProjectMangmentAuth") {
     try {
         console.log(id)
-        const myDocRef = doc(db, 'ProjectMangmentAuth', id);
+        const myDocRef = doc(db, location, id);
         await deleteDoc(myDocRef);
     } catch (error) {
         console.log(error)
@@ -48,13 +48,13 @@ export async function deleteDocs(id) {
 }
 
 //get request for tag query
-export async function getTag() {
+export async function getTask(location = "ProjectMangmentAuth" , userid) {
     try {
         let a = []
-        const q = query(collection(db, "ProjectMangmentAuth"), where("addTag", "!=", false));
+        const q = query(collection(db, location), where("userid", "==", userid));
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((m) => {
-            a.push({ id: m.id, tag: m.data() })
+            a.push({id:m.id,task:m.data().task})
         })
         return a
     } catch (error) {
