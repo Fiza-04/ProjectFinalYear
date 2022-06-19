@@ -12,7 +12,7 @@ const MainNavigation = () => {
     return (
         <View style={{width:"100%" , height:"100%"}}>
             <NavigationContainer >
-                <Stack.Navigator >
+                <Stack.Navigator screenOptions={{headerShown:false}}>
                     <Stack.Screen name="Login" component={Login} />
                     <Stack.Screen name="signin" component={Signin} />
                     <Stack.Screen name="Home" component={Home} />

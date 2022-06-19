@@ -2,6 +2,7 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 import React from 'react'
 import { SigninMethod } from '../firebase/Auth'
 import { set } from '../firebase/Crud'
+import styles from './LoginStyle'
 
 const Signin = ({navigation}) => {
     const [userName, setUsername] = React.useState("")
@@ -16,36 +17,49 @@ const Signin = ({navigation}) => {
         } catch (error) { console.log(error) }
     }
     return (
-        <View>
+        <View style={styles.mainContainer}>
+        <View style={styles.subContainer}>
+            
             <View>
-                <Text>signin part</Text>
-            </View>
-            <View>
+                <View>
+                    <Text style={styles.loginPart}>Sign in</Text>
+                </View>
+                <View style={styles.inputPart}>
                 <TextInput
                     placeholder='email'
                     value={email}
-                    onChangeText={setEmail} />
+                    onChangeText={setEmail}
+                    style={styles.inputs}/>
+                </View>
+                <View style={styles.inputPart}>
                 <TextInput
                     placeholder='username'
                     value={userName}
-                    onChangeText={setUsername} />
+                    onChangeText={setUsername}
+                    style={styles.inputs} />
+                </View>
+                <View style={styles.inputPart}>
                 <TextInput
                     placeholder='Password'
                     value={passWord}
                     onChangeText={setPass}
                     keyboardType="visible-password"
                     secureTextEntry="true"
+                    style={styles.inputs}
                 />
+                </View>
+               
                 <TouchableOpacity
-                    onPress={getSignin}
+                    onPress={getSignin} 
+                    style={styles.navPart}
                 >
-                    <Text>Signin</Text>
+                    <Text style={{fontSize: 18, color: 'white'}}>Sign in</Text>
                 </TouchableOpacity>
             </View>
+        </View>
         </View>
     )
 }
 
 export default Signin
 
-const styles = StyleSheet.create({})

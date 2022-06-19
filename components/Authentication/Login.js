@@ -3,6 +3,7 @@ import React from 'react'
 import { LoginMethod } from '../firebase/Auth'
 import { usernameState } from '../GlobalState/Globalstate'
 import { createState, useState } from '@hookstate/core';
+import styles from './LoginStyle';
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = React.useState("")
@@ -17,34 +18,45 @@ const Login = ({ navigation }) => {
         } catch (error) { console.log(error) }
     }
     return (
-        <View>
+        <View style={styles.mainContainer}>
+        <View style={styles.subContainer}>
             <View>
-                <Text>Login part</Text>
-            </View>
-            <View>
+                <View>
+                    <Text style={styles.loginPart}>Login</Text>
+                </View>
+                <View style={styles.inputPart}> 
                 <TextInput
                     placeholder='email'
                     value={email}
-                    onChangeText={setEmail} />
+                    onChangeText={setEmail}
+                    style={styles.inputs} />
+                </View>
+                <View style={styles.inputPart}>
                 <TextInput
                     placeholder='Password'
                     value={passWord}
                     onChangeText={setPass}
                     keyboardType="visible-password"
                     secureTextEntry="true"
+                    style={styles.inputs}
                 />
+                </View>
+                
                 <TouchableOpacity
                     onPress={getLogin}
                 >
-                    <Text>Login</Text>
+                    <Text style={styles.navPart}>
+                    <Text style={{fontSize: 18}}>Login</Text>
+                    </Text>
                 </TouchableOpacity>
             </View>
             <View>
-                <Text>havent signined up,sign up now
+                <Text style={styles.navPart}>Haven't signed up yet,sign up now
                     <Text
-                        style={{ color: "blue" }}
-                        onPress={() => navigation.navigate("signin")}>sign up</Text>
+                        style={{ color: "blue",  fontSize: 16}}
+                        onPress={() => navigation.navigate("signin")}> Sign up</Text>
                 </Text>
+            </View>
             </View>
         </View>
     )
@@ -52,4 +64,3 @@ const Login = ({ navigation }) => {
 
 export default Login
 
-const styles = StyleSheet.create({})
