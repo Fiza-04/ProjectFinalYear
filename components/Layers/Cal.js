@@ -4,20 +4,16 @@ import { usernameState } from '../GlobalState/Globalstate'
 import { createState, useState } from '@hookstate/core';
 
 
-const Home = ({navigation}) => {
+const Calendar = () => {
     const state = useState(usernameState)
 
   return (
     <View>
-      <Text>{state.get()}</Text>
-      <TouchableOpacity
-      onPress={() => navigation.navigate("Team1")}>
-        Press me
-      </TouchableOpacity>
+      <Text>Calyvgh</Text>
     </View>
   )
 }
 
-export default Home
+export default Calendar
 
 const styles = StyleSheet.create({})

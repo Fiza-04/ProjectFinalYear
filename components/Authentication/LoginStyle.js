@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 import { winHeight, winWidth } from "./Dimensions";
 
 
+
 export default StyleSheet.create({
 
     mainContainer: {
@@ -11,14 +12,17 @@ export default StyleSheet.create({
         paddingStart: winWidth/ 3,
         paddingBottom: winHeight / 4,
         paddingEnd: winWidth/ 3,
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        alignItems: 'center'
     },
     subContainer:{
         borderWidth: 0.5,
         borderRadius: 25,
         borderColor: 'white',
         height: winHeight / 2,
-        width: winWidth / 3
+        width: winWidth / 3,
+        alignItems: 'center'
+        
     },
     loginPart: {
         fontSize: 50,
